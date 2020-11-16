@@ -11,6 +11,9 @@ class MongoDump:
     def __init__(self):
         self.today = date.today().strftime('%b-%d-%Y')
         self.tempdir = config_file['temp_dir_path']
+        self.host = config_file['mongo_host']
+        self.mongo_user = config_file['mongo_user']
+        self.mongo_pass = config_file['mongo_pass']
         self.bucket = config_file['bucket']
         self.create_temp_dir()
 
@@ -19,7 +22,7 @@ class MongoDump:
         return self.create_dump()
 
     def create_dump(self):
-        command = f"mongodump -o={self.tempdir}"
+        command = f"mongodump -h {self.host} -u {self.mongo_user} -p {self.mongo_pass} -o {self.tempdir}"
         dumpdb = os.system(command)
         return self.compress_folder()
 
