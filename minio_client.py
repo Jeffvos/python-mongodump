@@ -9,9 +9,9 @@ with open('config.json') as config:
 class Storage:
     def __init__(self):
         self._storageClient = Minio(config_file['minio_host'],
-                                    access_key=config_file['access_key'],
-                                    secret_key=config_file['secret_key'],
-                                    secure=True)
+                              access_key=config_file['access_key'],
+                              secret_key=config_file['secret_key'],
+                              secure=True)
 
     def create_bucket(self, bucketName):
         try:
